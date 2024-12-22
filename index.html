@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation and Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .output {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 10px auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Manipulation and Display</h1>
+    <div id="output" class="output"></div>
+
+    <script>
+        // Create an array with objects
+        const objectArray = [
+            { name: "Alice", age: 25 },
+            { name: "Bob", age: 30 },
+            { name: "Charlie", age: 35 }
+        ];
+
+        // Create a regular array
+        const regularArray = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+
+        // Function to display values using object keys
+        function displayObjectArray(array) {
+            let html = "<h2>Array with Objects:</h2>";
+            html += "<table><tr><th>Index</th><th>Name</th><th>Age</th></tr>";
+            array.forEach((item, index) => {
+                html += `<tr><td>${index}</td><td>${item.name}</td><td>${item.age}</td></tr>`;
+            });
+            html += "</table>";
+            return html;
+        }
+
+        // Function to display values index by index
+        function displayRegularArray(array) {
+            let html = "<h2>Regular Array:</h2><ul>";
+            array.forEach((item, index) => {
+                html += `<li>Index ${index}: ${item}</li>`;
+            });
+            html += "</ul>";
+            return html;
+        }
+
+        // Using join() to display the whole array as a string
+        function displayArrayJoin(array) {
+            return `<h2>Array as String (Using join):</h2><p>${array.join(", ")}</p>`;
+        }
+
+        // Using pop() to remove and display the last element
+        function displayArrayPop(array) {
+            const lastElement = array.pop(); // Remove last element
+            return `<h2>After Using pop():</h2><p>Removed: ${lastElement}</p><p>Remaining Array: ${array.join(", ")}</p>`;
+        }
+
+        // Displaying results in the output div
+        const outputDiv = document.getElementById("output");
+        let outputHtml = "";
+
+        // Display the object array
+        outputHtml += displayObjectArray(objectArray);
+
+        // Display the regular array
+        outputHtml += displayRegularArray(regularArray);
+
+        // Display the array using join()
+        outputHtml += displayArrayJoin([...regularArray]); // Using a copy to keep original
+
+        // Display the array after using pop()
+        outputHtml += displayArrayPop([...regularArray]); // Using a copy to keep original
+
+        outputDiv.innerHTML = outputHtml;
+    </script>
+</body>
+</html>
